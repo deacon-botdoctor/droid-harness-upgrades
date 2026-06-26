@@ -1,0 +1,3 @@
+# One repo path per line. Use local paths only.
+/path/to/repo-one
+/path/to/repo-two
