@@ -1,0 +1,48 @@
+# Example configuration. Keep real repo lists, hosts, accounts, and secrets private.
+version: 1
+
+session:
+  start_context:
+    enabled: true
+    max_lines: 120
+    include_git_status: true
+    include_recent_handoff: true
+  end_handoff:
+    enabled: true
+    sanitize: true
+    template: templates/session-handoff.md
+
+planning:
+  require_todos_for_non_trivial_work: true
+  use_design_interview_when_unclear: true
+  require_spec_for_high_blast_radius: true
+
+validation:
+  require_before_closeout: true
+  commands:
+    docs:
+      - "markdown link check or file-open check"
+    code:
+      - "project lint"
+      - "project typecheck"
+      - "project tests"
+  if_unknown: "inspect package scripts, CI, Makefile, task runner, and repo docs"
+
+git_safety:
+  protect_untracked_files: true
+  require_status_before_commit: true
+  require_cached_diff_before_commit: true
+  require_secret_scan_before_public_push: true
+  disallow_force_push_without_explicit_approval: true
+
+automation:
+  default_mode: read_only
+  require_approval_card_for_recurring_jobs: true
+  require_first_run_proof: true
+  require_kill_switch: true
+
+memory:
+  store_raw_transcripts: false
+  store_sanitized_handoffs: true
+  promote_reusable_lessons: true
+  require_live_source_for_current_state: true
